@@ -61,8 +61,7 @@ if __name__ == "__main__":
     data, targets = parse()
     data = np.array(data)
     data = data.astype(np.float)
-    print data[:,0:20].shape
-    #data = normalize(data,axis=1)
+    data = normalize(data,axis=1)
     #print (data[1][0])
     targets = np.array(targets)
     #print (targets[0])
@@ -70,8 +69,7 @@ if __name__ == "__main__":
     bs = cv.Bootstrap(targets.size, n_iter=100)
     max_vals = []
     for alpha in alpha_vals:
-        #print '\n', alpha
+        print '\n', alpha
         max_vals.append(trails(data, targets, bs, alpha))
-
 	print max(max_vals)
 
