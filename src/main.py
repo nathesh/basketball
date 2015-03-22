@@ -35,8 +35,9 @@ def all_model(alpha):
     ext = ExtraTreesClassifier(n_estimators=10, max_depth=None,
                                min_samples_split=1, random_state=0)
     # ,(ensemble,'ensemble')]
-    # 
-    return [(SGD, 'StocasticG'), (preceptron, 'preceptron'), (gnb, 'GaussianNB'), (RF, 'RandomForest'),(ext,"ExtraTrees")]
+    #
+    return [(SGD, 'StocasticG'), (preceptron, 'preceptron'),
+            (gnb, 'GaussianNB'), (RF, 'RandomForest'), (ext, "ExtraTrees")]
 
 
 def trails(data, target_vals, bs, alpha):
@@ -61,15 +62,15 @@ if __name__ == "__main__":
     data, targets = parse()
     data = np.array(data)
     data = data.astype(np.float)
-    data = normalize(data,axis=1)
-    #print (data[1][0])
+    data = normalize(data, axis=1)
+    # print (data[1][0])
     targets = np.array(targets)
-    #print (targets[0])
+    # print (targets[0])
     alpha_vals = np.linspace(750, 1000, 20)
     bs = cv.Bootstrap(targets.size, n_iter=100)
     max_vals = []
     for alpha in alpha_vals:
-        print '\n', alpha
-        max_vals.append(trails(data, targets, bs, alpha))
+		print '\n', alpha
+		max_vals.append(trails(data, targets, bs, alpha))
 	print max(max_vals)
 
